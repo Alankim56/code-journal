@@ -1,0 +1,48 @@
+img {
+  width: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+header {
+  background-color: #562b82;
+  color: white;
+  padding: 1.5px;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+h1 {
+  display: inline-block;
+}
+
+h2 {
+  display: inline-block;
+}
+
+h3 {
+  display: inline-block;
+  margin: 0.5rem 0;
+}
+
+button {
+  color: white;
+  background-color: #562b82;
+  border-radius: 5px;
+  padding: 6px 10px;
+  float: right;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: lightgrey solid 1px;
+  margin-bottom: 1rem;
+}
+
+.note {
+  padding-bottom: 80px;
+  margin-bottom: 20px;
+}
