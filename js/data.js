@@ -7,14 +7,12 @@ var data = {
   nextEntryId: 1
 };
 
-window.addEventListener('beforeunload', $serializedData);
-function $serializedData(event) {
-  var JSONstorage = window.localStorage;
+window.addEventListener('beforeunload', function (e) {
   var JSONdata = JSON.stringify(data);
-  JSONstorage.setItem('local-storage', JSONdata);
-}
+  localStorage.setItem('code-storage', JSONdata);
+});
 
-var $data = localStorage.getItem('local-storage');
-if ($data !== null) {
-  data = JSON.parse($data);
+var $previousData = localStorage.getItem('code-storage');
+if ($previousData !== null) {
+  data = JSON.parse($previousData);
 }
