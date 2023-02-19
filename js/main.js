@@ -33,47 +33,43 @@ function renderEntry($object) {
   $li.setAttribute('data-entry-id', $object.entryId);
 
   var $row = document.createElement('div');
-  $row.setAttribute('class', 'row');
+  $row.className = 'row class';
   $li.appendChild($row);
 
   var $columnHalf = document.createElement('div');
-  $columnHalf.setAttribute('class', 'column-half');
+  $columnHalf.className = 'column-half';
   $row.appendChild($columnHalf);
 
   var $imgTwo = document.createElement('img');
-  $imgTwo.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $imgTwo.setAttribute('src', $object.photourl);
+  $imgTwo.setAttribute('alt', 'placeholder');
   $columnHalf.appendChild($imgTwo);
 
   var $columnHalfTwo = document.createElement('div');
-  $columnHalfTwo.setAttribute('class', 'column-half');
+  $columnHalfTwo.className = 'column-half';
   $row.appendChild($columnHalfTwo);
 
   var h3 = document.createElement('h3');
-  h3.textContent = 'Pseudo Image';
+  h3.textContent = $object.title;
   $columnHalfTwo.appendChild(h3);
 
   var $p = document.createElement('p');
-  $p.textContent = 'This entry, otherwise known as a fake entry, is being utilized to check if it works for both mobile and desktop screens.';
+  $p.textContent = $object.note;
   $columnHalfTwo.appendChild($p);
 
   return $li;
 }
 
 document.addEventListener('DOMContentLoaded', function (entry) {
-  var $reTest = localStorage.getItem('code-storage');
-  if ($reTest !== null) {
-    data.entries = JSON.parse($reTest);
-  }
+
   for (var i = 0; i < data.entries.length; i++) {
     var renderEntryTest = renderEntry(data.entries[i]);
     $ulEntries.appendChild(renderEntryTest);
   }
   viewSwap(data.view);
-
-  if ($ulEntries.children.length) {
-    toggleNoEntries();
-  }
-});
+  toggleNoEntries();
+}
+);
 
 var $startButton = document.querySelector('.switch-entries');
 $startButton.addEventListener('click', function (e) {

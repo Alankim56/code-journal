@@ -60,6 +60,17 @@ ul {
   margin: 0;
 }
 
+.more-entries li {
+  padding: 0 0 25px;
+  margin-bottom: 50px;
+  list-style-type: none;
+}
+
+.more-entries {
+  margin-top: 20px;
+  padding: 0;
+}
+
 .zero-entries {
   text-align: center;
   display: flex;
@@ -69,4 +80,8 @@ a {
   color: white;
   text-decoration: none;
   margin-left: 30px;
+}
+
+p {
+  margin: 0;
 }
