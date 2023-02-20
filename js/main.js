@@ -53,6 +53,10 @@ function renderEntry($object) {
   h3.textContent = $object.title;
   $columnHalfTwo.appendChild(h3);
 
+  var $newIcon = document.createElement('i');
+  $newIcon.setAttribute('class', 'fa fa-pen');
+  $columnHalfTwo.appendChild($newIcon);
+
   var $p = document.createElement('p');
   $p.textContent = $object.note;
   $columnHalfTwo.appendChild($p);
