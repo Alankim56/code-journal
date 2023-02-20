@@ -15,54 +15,68 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
   <header>
     <div class="container">
       <div class="row">
         <div class="column-full">
           <h2>Code Journal</h2>
+          <a href="#" class="switch-entries">Entries</a>
         </div>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <form class="view" data-view="entry-form">
+    <div data-view="entry-form">
+      <form class="view-form">
+        <div class="row">
+          <div class="column-full">
+            <h1>New Entry</h1>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column-half">
+            <img class="placeImage" src="images/placeholder-image-square.jpg" alt="photo">
+          </div>
+
+          <div class="column-half">
+            <h3>Title</h3>
+            <input class="title" type="text" name="title" required>
+            <h3>Photo URL</h3>
+            <input class="photourl" type="text" name="photo" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column-full">
+            <h3>Notes</h3>
+            <input class="note" type="text" name="notes" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column-full">
+            <button class="save-button">SAVE</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+    <div data-view="entries" class="hidden">
       <div class="row">
         <div class="column-full">
-          <h1>New Entry</h1>
+          <h1>Entries</h1>
+          <a href="#" class="btn-two">NEW</a>
         </div>
       </div>
+      <ul class="more-entries"></ul>
+      <p class="zero-entries">No Entries have been recorded</p>
+    </div>
 
-      <div class="row">
-        <div class="column-half">
-          <img class="placeImage" src="images/placeholder-image-square.jpg" alt="photo">
-        </div>
-
-        <div class="column-half">
-          <h3>Title</h3>
-          <input class="title" type="text" name="title" required>
-          <h3>Photo URL</h3>
-          <input class="photourl" type="text" name="photo" required>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="column-full">
-          <h3>Notes</h3>
-          <input class="note" type="text" name="notes" required>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="column-full">
-          <button>SAVE</button>
-        </div>
-      </div>
-    </form>
-
-    <div data-view="entry-form"></div>
-    <div data-view="entries" class="hidden"></div>
   </main>
 
   <script src="js/data.js"></script>
