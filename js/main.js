@@ -12,17 +12,39 @@ function $photoInput(event) {
 $form.addEventListener('submit', $submit);
 function $submit(event) {
   event.preventDefault();
-  var $object = {
-    title: $title.value,
-    photourl: $photourl.value,
-    note: $note.value,
-    entryId: data.nextEntryId
-  };
-  data.nextEntryId++;
-  data.entries.unshift($object);
+  if (data.editing === null) {
+    var $object = {
+      title: $title.value,
+      photourl: $photourl.value,
+      note: $note.value,
+      entryId: data.nextEntryId
+    };
+    data.nextEntryId++;
+    data.entries.unshift($object);
+    var $li = renderEntry($object);
+    $ulEntries.prepend($li);
+  } else {
+    var $editedObject = {
+      title: $title.value,
+      photourl: $photourl.value,
+      note: $note.value,
+      entryId: data.editing
+    };
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing === data.entries[i].entryId) {
+        data.entries[i] = $editedObject;
+      }
+    }
+    var $editedEntry = renderEntry($editedObject);
+    var $editedLi = document.querySelectorAll('li');
+    for (var x = 0; x < $editedLi.length; x++) {
+      if (parseInt($editedLi[x].getAttribute('data-entry-id')) === data.editing) {
+        $editedLi[x].replaceWith($editedEntry);
+      }
+    }
+  }
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  var $li = renderEntry($object);
-  $ulEntries.prepend($li);
+  $noEntries.className = 'zero-entries';
   $form.reset();
   viewSwap('entries');
   toggleNoEntries();
@@ -70,6 +92,9 @@ document.addEventListener('DOMContentLoaded', function (entry) {
     var renderEntryTest = renderEntry(data.entries[i]);
     $ulEntries.appendChild(renderEntryTest);
   }
+  if (data.entries.length !== 0) {
+    $noEntries.className = 'zero-entries';
+  }
   viewSwap(data.view);
   toggleNoEntries();
 }
@@ -84,6 +109,7 @@ var $newButton = document.querySelector('.btn-two');
 $newButton.addEventListener('click', function (e) {
   $h1.textContent = 'New Entry';
   viewSwap('entry-form');
+  data.editing = null;
 });
 
 var $saveButton = document.querySelector('.save-button');
