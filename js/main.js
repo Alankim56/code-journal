@@ -82,6 +82,7 @@ $startButton.addEventListener('click', function (e) {
 
 var $newButton = document.querySelector('.btn-two');
 $newButton.addEventListener('click', function (e) {
+  $h1.textContent = 'New Entry';
   viewSwap('entry-form');
 });
 
@@ -114,5 +115,24 @@ function viewSwap(view) {
     } else {
       $viewEntries[i].className = 'hidden';
     }
+  }
+}
+var $h1 = document.querySelector('h1');
+
+$ulEntries.addEventListener('click', $ulEdit);
+function $ulEdit(event) {
+  if (event.target.tagName === 'I') {
+    viewSwap('entry-form');
+    var $dataEditing = parseInt(event.target.closest('li').getAttribute('data-entry-id'));
+    data.editing = $dataEditing;
+    for (var i = 0; i < data.entries.length; i++) {
+      if ($dataEditing === data.entries[i].entryId) {
+        $title.value = data.entries[i].title;
+        $photourl.value = data.entries[i].photourl;
+        $note.value = data.entries[i].note;
+      }
+    }
+    $img.setAttribute('src', $photourl.value);
+    $h1.textContent = 'Edit Entry';
   }
 }
