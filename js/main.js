@@ -113,11 +113,6 @@ $newButton.addEventListener('click', function (e) {
   data.editing = null;
 });
 
-var $saveButton = document.querySelector('.save-button');
-$saveButton.addEventListener('click', function (e) {
-  viewSwap('entries');
-});
-
 var $noEntries = document.querySelector('.zero-entries');
 var $ulEntries = document.querySelector('.more-entries');
 
