@@ -42,6 +42,7 @@ function $submit(event) {
         $editedLi[x].replaceWith($editedEntry);
       }
     }
+    data.editing = null;
   }
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $noEntries.className = 'zero-entries';
