@@ -85,3 +85,9 @@ a {
 p {
   margin: 0;
 }
+
+i {
+  color: #562b82;
+  float: right;
+  font-size: 20px;
+}
