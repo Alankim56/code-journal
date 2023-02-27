@@ -43,9 +43,10 @@ function $submit(event) {
       }
     }
     data.editing = null;
+    $deleteButton.className = 'delete-button hidden';
+    $note.textContent = '';
   }
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $noEntries.className = 'zero-entries';
   $form.reset();
   viewSwap('entries');
   toggleNoEntries();
@@ -156,5 +157,48 @@ function $ulEdit(event) {
     }
     $img.setAttribute('src', $photourl.value);
     $h1.textContent = 'Edit Entry';
+    $deleteButton.className = 'delete-button';
   }
 }
+
+var $deleteButton = document.querySelector('.delete-button');
+var $modalContainer = document.querySelector('.modal-container');
+var $modal = document.querySelector('.modal');
+var $cancelButton = document.querySelector('.cancel');
+var $confirmButton = document.querySelector('.confirm');
+
+$deleteButton.addEventListener('click', function (event) {
+  $modalContainer.classList.remove('hidden');
+  $modal.classList.remove('hidden');
+});
+
+$cancelButton.addEventListener('click', function (event) {
+  $modalContainer.classList.add('hidden');
+  $modal.classList.add('hidden');
+});
+
+$confirmButton.addEventListener('click', function (event) {
+  for (var j = 0; j < data.entries.length; j++) {
+    if (data.editing === data.entries[j].entryId) {
+      data.entries.splice(j, 1);
+    }
+  }
+  var $editedLi = document.querySelectorAll('li');
+  for (var y = 0; y < $editedLi.length; y++) {
+    if (parseInt($editedLi[y].getAttribute('data-entry-id')) === data.editing) {
+      $editedLi[y].remove();
+    }
+    toggleNoEntries();
+  }
+  $modalContainer.classList.add('hidden');
+  $modal.classList.add('hidden');
+  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $form.reset();
+  viewSwap('entries');
+  $note.textContent = '';
+  $deleteButton.className = 'delete-button hidden';
+  data.editing = null;
+  if (data.entries.length === 0) {
+    $noEntries.classList.remove('hidden');
+  }
+});
